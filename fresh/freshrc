@@ -1,3 +1,4 @@
+fresh bash/bash_profile --file
 fresh vim/vimrc --file
 fresh git/gitconfig --file
 fresh git/gitignore_global --file
