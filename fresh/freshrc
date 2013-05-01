@@ -1,0 +1,3 @@
+fresh vim/vimrc --file
+fresh git/gitconfig --file
+fresh git/gitignore_global --file

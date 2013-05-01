@@ -1,0 +1,21 @@
+[core]
+	editor = /usr/bin/vim
+	excludesfile = ~/.gitignore_global
+[user]
+	name = Nicola Iarocci
+	email = nicola@nicolaiarocci.com
+[credential]
+	helper = osxkeychain
+[alias]
+	amend = commit --amend
+	fixup = commit --amend --no-edit
+	st = status -sb
+    r = reset HEAD
+	r1 = reset HEAD^
+	r2 = reset HEAD^^
+    rh = reset HEAD --hard
+	rh1 = reset HEAD^ --hard
+	rh2 = reset HEAD^^ --hard
+	co = checkout
+[color]
+	ui = true

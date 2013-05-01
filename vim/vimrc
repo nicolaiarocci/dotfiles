@@ -1,0 +1,399 @@
+" My personal vim setup.
+
+" Use vim settings, rather then vi settings (much better!)
+" This must be first, because it changes other options as a side effect.
+set nocompatible
+filetype off 
+
+" Plugins - Let Vundle manage them 
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+Bundle 'gmarik/vundle'
+
+Bundle 'klen/python-mode'
+Bundle 'tpope/vim-surround'
+Bundle 'sontek/minibufexpl.vim'
+Bundle 'vim-scripts/TaskList.vim'
+Bundle 'plasticboy/vim-markdown'  
+Bundle 'scrooloose/nerdtree'
+Bundle 'kien/ctrlp.vim'
+
+" Themes 
+Bundle 'altercation/vim-colors-solarized'
+"Bundle 'vim-scripts/peaksea'
+"Bundle 'sjl/badwolf'
+"Bundle 'tomasr/molokai'
+"Bundle 'vim-scripts/wombat256.vim'
+
+" Enable filetype plugin
+filetype on                     " try to detect filetypes
+filetype plugin indent on       " enable loading indent file for filetype
+syntax on                       " Enable syntax hl
+
+" Change the mapleader from \ to ,
+let mapleader=","
+            
+" Editing behaviour 
+set showmode                    " always show what mode we're currently editing in
+set nowrap                      " don't wrap lines
+set tabstop=4                   " a tab is four spaces
+set softtabstop=4               " when hitting <BS>, pretend like a tab is removed, even if spaces
+set expandtab                   " expand tabs by default 
+set shiftwidth=4                " number of spaces to use for autoindenting
+set shiftround                  " use multiple of shiftwidth when indenting with '<' and '>'
+set backspace=indent,eol,start  " allow backspacing over everything in insert mode
+set autoindent                  " always set autoindenting on
+set copyindent                  " copy the previous indentation on autoindenting
+set number                      " always show line numbers
+set showmatch                   " set show matching paranthesis
+set smarttab                    " insert tabs on the start of a line according to shiftwidth, not tabstop
+set scrolloff=4                 " keep 4 lines off the edges of the screen when scrolling
+set virtualedit=all             " allow the cursor to go in 'invalid' places
+set fileformats="unix,dos,mac" 
+
+" Editor layout 
+set termencoding=utf-8
+set encoding=utf-8
+set lazyredraw                  " don't update the display while executing macros
+set laststatus=2                " tell vim to always put a status line in, even if there
+                                "   is only one window
+set cmdheight=2                 " use a status bar that is 2 rows high
+
+" Vim behaviour 
+set hidden                      " hide buffers instead of closing them this means that the
+                                "   current buffer can be put to background without being
+                                "   written; and that marks and undo history are preserved
+set switchbuf=useopen           " reveal already opened files from the quickfix windows
+                                "   instead of opening new buffers
+set history=1000                " remember more commands and search history
+set undolevels=1000             " use many muchos levels of undo
+if v:version >= 730
+    set undofile                " keep a persistent backup file
+    if has('win32') || has('win64')
+        set undodir=C:\Windows\Temp
+    else
+        set undodir=~/.vim/.undo
+    endif
+endif
+
+set nobackup                    " do not keep backup files, it's 70's style cluttering
+set noswapfile                  " do not write annoying intermediate swap files,
+set directory=~/.vim/.tmp       " store swap files in one of these directories
+                                "   (in case swapfile is ever turned on)
+set viminfo='20,\"80            " read/write a .viminfo file, don't store more
+                                "   than 80 lines of registers
+set wildmenu                    " make tab completion for files/buffers act like bash
+set wildmode=list:full          " show a list when pressing tab and complete first full match
+set wildignore=*.swp,*.bak,*.pyc,*.class
+set title                       " change the terminal's title
+set visualbell                  " don't beep
+set noerrorbells                " don't beep
+set showcmd                     " show (partial) command in the last line of the screen
+                                " this also shows visual selection info
+set nomodeline                  " disable mode lines (security measure)
+set ttyfast                     " always use a fast terminal
+set cursorline                  " underline the current line, for quick orientation
+set clipboard+=unnamed          " enable syste pasting from clipboard
+set autoread                    " Set to auto read when a file is changed from the outside
+
+"pymode settings
+let g:pymode_lint_ignore = ""   " report E501 errors too
+
+" Tame the quickfix window (open/close using ,f)
+nnoremap <silent> <leader>f :QFix<CR>
+
+command! -bang -nargs=? QFix call QFixToggle(<bang>0)
+function! QFixToggle(forced)
+  if exists("g:qfix_win") && a:forced == 0
+    cclose
+    unlet g:qfix_win
+  else
+    copen 10
+    let g:qfix_win = bufnr("$")
+  endif
+endfunction
+
+" When vimrc is edited, reload it
+"autocmd! bufwritepost vimrc source ~/vimfiles/_vimrc
+
+" Folding 
+"set foldenable                  " enable folding
+"set foldcolumn=2                " add a fold column
+"set foldmethod=indent           " detect triple-{ style fold markers
+"set foldnestmax=2               " in python, classes are flded, internal statements aren't
+set foldlevelstart=99           " start out with everything unfolded
+"set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
+                                " which commands trigger auto-unfold
+"nnoremap <space> za             " foldig shortcut
+"vnoremap <space> zf
+
+"function! MyFoldText()
+"    let line = getline(v:foldstart)
+"
+"    let nucolwidth = &fdc + &number * &numberwidth
+"    let windowwidth = winwidth(0) - nucolwidth - 3
+"    let foldedlinecount = v:foldend - v:foldstart
+"
+"    " expand tabs into spaces
+"    let onetab = strpart('          ', 0, &tabstop)
+"    let line = substitute(line, '\t', onetab, 'g')
+"
+"    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
+"    let fillcharcount = windowwidth - len(line) - len(foldedlinecount) - 4
+"    return line . ' …' . repeat(" ",fillcharcount) . foldedlinecount . ' '
+"endfunction
+"set foldtext=MyFoldText()
+
+" Search 
+nnoremap / /\v
+vnoremap / /\v
+set ignorecase                              " ignore case when searching
+set smartcase                               " ignore case if search pattern is all lowercase,
+                                            "   case-sensitive otherwise
+set hlsearch                                " highlight search terms
+set gdefault                                " search/replace 'globally' (on a line) by default
+set incsearch                               " show search matters as you type
+nnoremap <silent> <leader><space> :noh<cr>  " quick clean highlighting of search matches
+
+" Handle long lines correctly 
+set textwidth=79
+set formatoptions=qrn1
+set colorcolumn=79
+
+" Shortcuts mappings 
+"nnoremap <leader>q :q<CR>           " quixkly close the current window
+
+" Disable arrow keys while in normal and insert modes
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+" Remap j and k to act as expecgted when used on long, wrapped lines
+nnoremap j gj
+nnoremap k gk
+
+" Use ,d (or ,dd or ,dj or 20,dd) to delete without adding it to the
+" yanked stack (also, in visual mode)
+nnoremap <silent> <leader>d "_d
+vnoremap <silent> <leader>d "_d
+
+" Quick yanking to the end of the line
+nnoremap Y y$
+
+" Pull word under cursor into LHS of a substitute (for quick search and
+" replace)
+nnoremap <leader>z :%s#\<<C-r>=expand("<cword>")<CR>\>#
+
+" Keep search matches in the middle of the window and pulse the line when moving
+" to them.
+nnoremap n n:call PulseCursorLine()<cr>
+nnoremap N N:call PulseCursorLine()<cr>
+
+" Quickly get out of insert mode without your fingers having to leave the
+" home row (either use 'jj' or 'jk')
+inoremap jj <Esc>
+
+" Quick alignment of text
+nnoremap <leader>al :left<CR>
+nnoremap <leader>ar :right<CR>
+nnoremap <leader>ac :center<CR>
+
+" Easy window navigation
+map <C-j> <C-W>j
+map <C-h> <C-W>h
+map <C-k> <C-W>k
+map <C-l> <C-W>l
+
+" Fast saving
+nmap <leader>w :w!<cr>
+
+" Fast editing of the _vimrc
+"map <leader>e :e! ~/vimfiles/_vimrc<cr>
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+" Use the arrows to something usefull
+map <right> :bn<cr>
+map <left> :bp<cr>
+
+" switch CWD to the directory of the open buffer
+map <leader>cd :cd %:p:h<cr>:pwd<cr>
+
+" Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
+nmap <M-j> mz:m+<cr>`z
+nmap <M-k> mz:m-2<cr>`z
+vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+if has('macunix') 
+    nmap <D-j> <M-j>
+    nmap <D-k> <M-k>
+    vmap <D-j> <M-j>
+    vmap <D-k> <M-k>
+endif
+
+map <leader>tl <Plug>TaskList
+
+" Close all the buffers
+map <leader>ba :1,300 bd!<cr>
+
+" Close the current buffer 
+map <leader>bd :Bclose<cr>
+
+command! Bclose call <SID>BufcloseCloseIt()
+function! <SID>BufcloseCloseIt()
+   let l:currentBufNum = bufnr("%")
+   let l:alternateBufNum = bufnr("#")
+
+   if buflisted(l:alternateBufNum)
+     buffer #
+   else
+     bnext
+   endif
+
+   if bufnr("%") == l:currentBufNum
+     new
+   endif
+
+   if buflisted(l:currentBufNum)
+     execute("bdelete! ".l:currentBufNum)
+   endif
+endfunction
+
+" NERDTree settings 
+" Put focus to the NERD Tree with F3 (tricked by quickly closing it and
+" immediately showing it again, since there is no :NERDTreeFocus command)
+nnoremap <leader>n :NERDTreeClose<CR>:NERDTreeToggle<CR>
+nnoremap <leader>m :NERDTreeClose<CR>:NERDTreeFind<CR>
+nnoremap <leader>N :NERDTreeClose<CR>
+
+" Store the bookmarks file
+let NERDTreeBookmarksFile=expand("$HOME/.vim/NERDTreeBookmarks")
+
+" Show the bookmarks table on startup
+let NERDTreeShowBookmarks=1
+
+" Show hidden files, too
+let NERDTreeShowFiles=1
+let NERDTreeShowHidden=1
+
+" Quit on opening files from the tree
+let NERDTreeQuitOnOpen=1
+
+" Highlight the selected entry in the tree
+let NERDTreeHighlightCursorline=1
+
+" Use a single click to fold/unfold directories and a double click to open
+" files
+let NERDTreeMouseMode=2
+
+" Don't display these kinds of files
+let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$',
+            \ '\.o$', '\.so$', '\.egg$', '\.egg-info$', '^\.git$', 
+            \ '\.DS_Store'  ]
+
+
+" CtrlP
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_show_hidden = 0
+
+" GUI 
+if has('win32') || has('win64')
+  " Windows
+  set gfn=Bitstream\ Vera\ Sans\ Mono:h10
+elseif has('macunix')
+  " MacVim
+  set gfn=Menlo:h12
+  set shell=/bin/bash
+elseif has('unix')
+  " Unix
+  set gfn=Monospace\ 10
+  set shell=/bin/bash
+endif
+
+if has("gui_running")
+    " Remove toolbar, left scrollbar and right scrollbar
+    set guioptions-=T
+    set guioptions-=l
+    set guioptions-=L
+    set guioptions-=r
+    set guioptions-=R
+    set t_Co=256
+    set background=dark
+    colorscheme solarized
+else
+    colorscheme solarized
+    set background=dark
+endif
+
+" Specify the behavior when switching between buffers 
+try
+  set switchbuf=usetab
+  set stal=2
+catch
+endtry
+
+" Pulse ------------------------------------------------------------------- {{{
+
+function! PulseCursorLine()
+    let current_window = winnr()
+
+    windo set nocursorline
+    execute current_window . 'wincmd w'
+
+    setlocal cursorline
+
+    redir => old_hi
+        silent execute 'hi CursorLine'
+    redir END
+    let old_hi = split(old_hi, '\n')[0]
+    let old_hi = substitute(old_hi, 'xxx', '', '')
+
+    hi CursorLine guibg=#3a3a3a
+    redraw
+    sleep 20m
+
+    hi CursorLine guibg=#4a4a4a
+    redraw
+    sleep 30m
+
+    hi CursorLine guibg=#3a3a3a
+    redraw
+    sleep 30m
+
+    hi CursorLine guibg=#2a2a2a
+    redraw
+    sleep 20m
+
+    execute 'hi ' . old_hi
+
+    windo set cursorline
+    execute current_window . 'wincmd w'
+endfunction
+
+" Format the statusline 
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l/%L:%c
+
+function! HasPaste()
+if &paste
+    return 'PASTE MODE  '
+else
+    return ''
+endif
+endfunction
+
+"Delete trailing white space, useful for Python ;)
+func! DeleteTrailingWS()
+    exe "normal mz"
+    %s/\s\+$//ge
+    exe "normal `z"
+endfunc
+autocmd BufWrite *.py :call DeleteTrailingWS()
+
+cd ~/code                       " set my standard coding folder as initial dir
