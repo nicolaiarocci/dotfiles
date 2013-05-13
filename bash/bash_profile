@@ -14,6 +14,9 @@ fi
 # vi mode
 set -o vi
 
+# increase open file limit 
+ulimit -n 4096
+
 # virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/code
