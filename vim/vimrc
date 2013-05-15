@@ -328,8 +328,10 @@ if has("gui_running")
     set background=dark
     colorscheme solarized
 else
-    colorscheme solarized
     set background=dark
+    " make solarized look good on iTerm2
+    let g:solarized_termtrans = 1
+    colorscheme solarized
 endif
 
 " Specify the behavior when switching between buffers 
