@@ -191,8 +191,8 @@ nnoremap <leader>z :%s#\<<C-r>=expand("<cword>")<CR>\>#
 
 " Keep search matches in the middle of the window and pulse the line when moving
 " to them.
-nnoremap n n:call PulseCursorLine()<cr>
-nnoremap N N:call PulseCursorLine()<cr>
+"nnoremap n n:call PulseCursorLine()<cr>
+"nnoremap N N:call PulseCursorLine()<cr>
 
 " Quickly get out of insert mode without your fingers having to leave the
 " home row (either use 'jj' or 'jk')
