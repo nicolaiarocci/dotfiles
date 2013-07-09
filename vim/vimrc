@@ -17,6 +17,8 @@ Bundle 'vim-scripts/TaskList.vim'
 Bundle 'plasticboy/vim-markdown'  
 Bundle 'scrooloose/nerdtree'
 Bundle 'kien/ctrlp.vim'
+Bundle 'tpope/vim-fugitive'
+Bundle 'bling/vim-airline'
 
 " Themes 
 Bundle 'altercation/vim-colors-solarized'
@@ -95,6 +97,11 @@ set ttyfast                     " always use a fast terminal
 set cursorline                  " underline the current line, for quick orientation
 set clipboard+=unnamed          " enable syste pasting from clipboard
 set autoread                    " Set to auto read when a file is changed from the outside
+
+"vim-airline
+set ttimeoutlen=50
+let g:bufferline_echo=0
+let g:airline_theme='solarized'
 
 "pymode settings
 let g:pymode_lint_ignore = ""   " report E501 errors too
