@@ -100,8 +100,9 @@ set autoread                    " Set to auto read when a file is changed from t
 
 "vim-airline
 set ttimeoutlen=50
-let g:bufferline_echo=0
 let g:airline_theme='solarized'
+let g:airline_powerline_fonts = 1
+"let g:bufferline_echo=0
 
 "pymode settings
 let g:pymode_lint_ignore = ""   " report E501 errors too
@@ -318,7 +319,11 @@ if has('win32') || has('win64')
   set gfn=Bitstream\ Vera\ Sans\ Mono:h10
 elseif has('macunix')
   " MacVim
-  set gfn=Menlo:h12
+  "set gfn=Menlo:h12
+  set gfn=Menlo\ Regular\ for\ Powerline:h12
+  "set gfn=Monaco:h12
+  "set gfn=Monaco\ for\ Powerline:h12
+  "set gfn=Source\ Code\ Pro\ Medium\ for\ Powerline:h12
   set shell=/bin/bash
 elseif has('unix')
   " Unix
@@ -340,6 +345,7 @@ else
     set background=dark
     " make solarized look good on iTerm2
     let g:solarized_termtrans = 1
+    set t_Co=256
     colorscheme solarized
 endif
 
