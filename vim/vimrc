@@ -12,13 +12,18 @@ Bundle 'gmarik/vundle'
 
 Bundle 'klen/python-mode'
 Bundle 'tpope/vim-surround'
-Bundle 'sontek/minibufexpl.vim'
 Bundle 'vim-scripts/TaskList.vim'
 Bundle 'plasticboy/vim-markdown'  
 Bundle 'scrooloose/nerdtree'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'bling/vim-airline'
+Bundle 'tpope/vim-dispatch'
+Bundle 'nosami/Omnisharp'
+Bundle 'tpope/vim-repeat'
+Bundle 'bling/vim-bufferline'
+"Bundle 'sontek/minibufexpl.vim'
+"Bundle 'alfredodeza/pytest.vim'
 
 " Themes 
 Bundle 'altercation/vim-colors-solarized'
@@ -102,11 +107,12 @@ set autoread                    " Set to auto read when a file is changed from t
 set ttimeoutlen=50
 let g:airline_theme='solarized'
 let g:airline_powerline_fonts = 1
-"let g:bufferline_echo=0
+let g:airline#extensions#tabline#enabled = 1
 
 "pymode settings
-let g:pymode_lint_ignore = ""   " report E501 errors too
-let g:pymode_lint_checker = "pyflakes,pep8"
+let g:pymode_lint_checkers = ["pyflakes", "pep8"]
+let g:pymode_rope_goto_definition_cmd = 'e'
+"let g:pymode_lint_ignore = "C0110,F0401,E1002,W0511,C901,R0201,E1103,W0223,W0702,R0912,W0231,R0921,R0914"   
 
 " Tame the quickfix window (open/close using ,f)
 nnoremap <silent> <leader>f :QFix<CR>
@@ -412,5 +418,12 @@ func! DeleteTrailingWS()
     exe "normal `z"
 endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
+
+" Change cursor when in insert mode (in iTerm2)
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+"let g:OmniSharp_host = "http://127.0.0.1:2000"
+"let g:Omnisharp_start_server = 0
 
 cd ~/code                       " set my standard coding folder as initial dir
