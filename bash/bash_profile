@@ -1,5 +1,7 @@
 export PATH=/usr/local/bin:$PATH
-export PATH=/usr/local/share/python:$PATH
+# export PATH=/usr/local/share/python:$PATH
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Tell ls to be colourful
 export CLICOLOR=1
