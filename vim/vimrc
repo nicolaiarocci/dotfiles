@@ -19,9 +19,9 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'bling/vim-airline'
 Bundle 'tpope/vim-dispatch'
-Bundle 'nosami/Omnisharp'
 Bundle 'tpope/vim-repeat'
 Bundle 'bling/vim-bufferline'
+"Bundle 'nosami/Omnisharp'
 "Bundle 'sontek/minibufexpl.vim'
 "Bundle 'alfredodeza/pytest.vim'
 
@@ -422,8 +422,5 @@ autocmd BufWrite *.py :call DeleteTrailingWS()
 " Change cursor when in insert mode (in iTerm2)
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-
-"let g:OmniSharp_host = "http://127.0.0.1:2000"
-"let g:Omnisharp_start_server = 0
 
 cd ~/code                       " set my standard coding folder as initial dir
