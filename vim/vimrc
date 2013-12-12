@@ -115,6 +115,12 @@ let g:pymode_rope_goto_definition_cmd = 'e'
 let g:pymode_rope_complete_on_dot = 0
 "let g:pymode_lint_ignore = "C0110,F0401,E1002,W0511,C901,R0201,E1103,W0223,W0702,R0912,W0231,R0921,R0914"   
 
+" Pytest
+nmap <silent><Leader>tf <Esc>:Pytest file<CR>
+nmap <silent><Leader>tc <Esc>:Pytest class<CR>
+nmap <silent><Leader>tm <Esc>:Pytest method<CR>
+nmap <silent><Leader>tp <Esc>:Pytest project<CR>
+
 " Tame the quickfix window (open/close using ,f)
 nnoremap <silent> <leader>f :QFix<CR>
 
