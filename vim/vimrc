@@ -112,6 +112,7 @@ let g:airline#extensions#tabline#enabled = 1
 "pymode settings
 let g:pymode_lint_checkers = ["pyflakes", "pep8"]
 let g:pymode_rope_goto_definition_cmd = 'e'
+let g:pymode_rope_complete_on_dot = 0
 "let g:pymode_lint_ignore = "C0110,F0401,E1002,W0511,C901,R0201,E1103,W0223,W0702,R0912,W0231,R0921,R0914"   
 
 " Tame the quickfix window (open/close using ,f)
