@@ -430,4 +430,7 @@ autocmd BufWrite *.py :call DeleteTrailingWS()
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
+" text file editing
+au BufRead,BufNewFile *.txt,*.tex,*.rst set wrap linebreak nolist textwidth=0 wrapmargin=0
+
 cd ~/code                       " set my standard coding folder as initial dir
