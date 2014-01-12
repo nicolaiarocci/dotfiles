@@ -24,6 +24,7 @@ Bundle 'bling/vim-bufferline'
 "Bundle 'nosami/Omnisharp'
 "Bundle 'sontek/minibufexpl.vim'
 Bundle 'alfredodeza/pytest.vim'
+Bundle 'vim-scripts/greplace.vim'
 
 " Themes 
 Bundle 'altercation/vim-colors-solarized'
