@@ -17,7 +17,7 @@ fi
 set -o vi
 
 # increase open file limit 
-ulimit -n 4096
+#ulimit -n 4096
 
 # virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
