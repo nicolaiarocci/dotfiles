@@ -17,5 +17,8 @@
 	rh1 = reset HEAD^ --hard
 	rh2 = reset HEAD^^ --hard
 	co = checkout
+	g = grep --break --heading --line-number
 [color]
 	ui = true
+[grep]
+	lineNumber = true
