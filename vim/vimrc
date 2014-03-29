@@ -1,11 +1,12 @@
 " My personal vim setup.
 
+
 " Use vim settings, rather then vi settings (much better!)
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 filetype off 
 
-" Plugins - Let Vundle manage them 
+" Plugins {{{
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
@@ -25,13 +26,15 @@ Bundle 'bling/vim-bufferline'
 "Bundle 'sontek/minibufexpl.vim'
 Bundle 'alfredodeza/pytest.vim'
 Bundle 'vim-scripts/greplace.vim'
+" }}}
 
-" Themes 
+" Themes {{{
 Bundle 'altercation/vim-colors-solarized'
 "Bundle 'vim-scripts/peaksea'
 "Bundle 'sjl/badwolf'
 "Bundle 'tomasr/molokai'
 "Bundle 'vim-scripts/wombat256.vim'
+" }}}
 
 " Enable filetype plugin
 filetype on                     " try to detect filetypes
@@ -41,7 +44,7 @@ syntax on                       " Enable syntax hl
 " Change the mapleader from \ to ,
 let mapleader=","
             
-" Editing behaviour 
+" Editing behaviour  {{{
 set showmode                    " always show what mode we're currently editing in
 set nowrap                      " don't wrap lines
 set tabstop=4                   " a tab is four spaces
@@ -57,17 +60,21 @@ set showmatch                   " set show matching paranthesis
 set smarttab                    " insert tabs on the start of a line according to shiftwidth, not tabstop
 set scrolloff=4                 " keep 4 lines off the edges of the screen when scrolling
 set virtualedit=all             " allow the cursor to go in 'invalid' places
+set nojoinspaces                " Use only one space after period when joining lines
 set fileformats="unix,dos,mac" 
+" }}}
 
-" Editor layout 
+" Editor layout  {{{
 set termencoding=utf-8
 set encoding=utf-8
+set fileencoding=utf-8
 set lazyredraw                  " don't update the display while executing macros
 set laststatus=2                " tell vim to always put a status line in, even if there
                                 "   is only one window
 set cmdheight=2                 " use a status bar that is 2 rows high
+" }}}
 
-" Vim behaviour 
+" Vim behaviour {{{
 set hidden                      " hide buffers instead of closing them this means that the
                                 "   current buffer can be put to background without being
                                 "   written; and that marks and undo history are preserved
@@ -104,23 +111,12 @@ set cursorline                  " underline the current line, for quick orientat
 set clipboard+=unnamed          " enable syste pasting from clipboard
 set autoread                    " Set to auto read when a file is changed from the outside
 
-"vim-airline
-set ttimeoutlen=50
-let g:airline_theme='solarized'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-
-"pymode settings
-let g:pymode_lint_checkers = ["pyflakes", "pep8"]
-let g:pymode_rope_goto_definition_cmd = 'e'
-let g:pymode_rope_complete_on_dot = 0
-"let g:pymode_lint_ignore = "C0110,F0401,E1002,W0511,C901,R0201,E1103,W0223,W0702,R0912,W0231,R0921,R0914"   
-
-" Pytest
-nmap <silent><Leader>tf <Esc>:Pytest file<CR>
-nmap <silent><Leader>tc <Esc>:Pytest class<CR>
-nmap <silent><Leader>tm <Esc>:Pytest method<CR>
-nmap <silent><Leader>tp <Esc>:Pytest project<CR>
+" Specify the behavior when switching between buffers 
+try
+  set switchbuf=usetab
+  set stal=2
+catch
+endtry
 
 " Tame the quickfix window (open/close using ,f)
 nnoremap <silent> <leader>f :QFix<CR>
@@ -167,7 +163,30 @@ set foldlevelstart=99           " start out with everything unfolded
 "endfunction
 "set foldtext=MyFoldText()
 
-" Search 
+" }}}
+
+"vim-airline {{{
+set ttimeoutlen=50
+let g:airline_theme='solarized'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+" }}}
+
+"pymode settings {{{
+let g:pymode_lint_checkers = ["pyflakes", "pep8"]
+let g:pymode_rope_goto_definition_cmd = 'e'
+let g:pymode_rope_complete_on_dot = 0
+"let g:pymode_lint_ignore = "C0110,F0401,E1002,W0511,C901,R0201,E1103,W0223,W0702,R0912,W0231,R0921,R0914"   
+" }}}
+
+" Pytest {{{
+nmap <silent><Leader>tf <Esc>:Pytest file<CR>
+nmap <silent><Leader>tc <Esc>:Pytest class<CR>
+nmap <silent><Leader>tm <Esc>:Pytest method<CR>
+nmap <silent><Leader>tp <Esc>:Pytest project<CR>
+" }}}
+
+" Search {{{
 nnoremap / /\v
 vnoremap / /\v
 set ignorecase                              " ignore case when searching
@@ -178,15 +197,24 @@ set gdefault                                " search/replace 'globally' (on a li
 set incsearch                               " show search matters as you type
 nnoremap <silent> <leader><space> :noh<cr>  " quick clean highlighting of search matches
 
-" Handle long lines correctly 
+" Pull word under cursor into LHS of a substitute (for quick search and
+" replace)
+nnoremap <leader>z :%s#\<<C-r>=expand("<cword>")<CR>\>#
+
+" Keep search matches in the middle of the window and pulse the line when moving
+" to them.
+"nnoremap n n:call PulseCursorLine()<cr>
+"nnoremap N N:call PulseCursorLine()<cr>
+
+" }}}
+
+" Handle long lines correctly {{{
 set textwidth=79
 set formatoptions=qrn1
 set colorcolumn=79
+" }}}
 
-" Shortcuts mappings 
-"nnoremap <leader>q :q<CR>           " quixkly close the current window
-
-" Disable arrow keys while in normal and insert modes
+" Disable arrow keys while in normal and insert modes {{{
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
@@ -195,6 +223,10 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
+" }}}
+
+" Shortcuts mappings 
+"nnoremap <leader>q :q<CR>           " quixkly close the current window
 
 " Remap j and k to act as expecgted when used on long, wrapped lines
 nnoremap j gj
@@ -207,15 +239,6 @@ vnoremap <silent> <leader>d "_d
 
 " Quick yanking to the end of the line
 nnoremap Y y$
-
-" Pull word under cursor into LHS of a substitute (for quick search and
-" replace)
-nnoremap <leader>z :%s#\<<C-r>=expand("<cword>")<CR>\>#
-
-" Keep search matches in the middle of the window and pulse the line when moving
-" to them.
-"nnoremap n n:call PulseCursorLine()<cr>
-"nnoremap N N:call PulseCursorLine()<cr>
 
 " Quickly get out of insert mode without your fingers having to leave the
 " home row (either use 'jj' or 'jk')
@@ -264,7 +287,7 @@ map <leader>tl <Plug>TaskList
 " Close all the buffers
 map <leader>ba :1,300 bd!<cr>
 
-" Close the current buffer 
+" Close the current buffer {{{
 map <leader>bd :Bclose<cr>
 
 command! Bclose call <SID>BufcloseCloseIt()
@@ -286,8 +309,9 @@ function! <SID>BufcloseCloseIt()
      execute("bdelete! ".l:currentBufNum)
    endif
 endfunction
+" }}}
 
-" NERDTree settings 
+" NERDTree settings {{{
 " Put focus to the NERD Tree with F3 (tricked by quickly closing it and
 " immediately showing it again, since there is no :NERDTreeFocus command)
 nnoremap <leader>n :NERDTreeClose<CR>:NERDTreeToggle<CR>
@@ -318,16 +342,17 @@ let NERDTreeMouseMode=2
 let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$',
             \ '\.o$', '\.so$', '\.egg$', '\.egg-info$', '^\.git$', 
             \ '\.DS_Store'  ]
+" }}}
 
-
-" CtrlP
+" CtrlP {{{
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_open_new_file = 'r'         " open new file in current windows
+" }}}
 
-" GUI 
+" GUI  {{{
 if has('win32') || has('win64')
   " Windows
   set gfn=Bitstream\ Vera\ Sans\ Mono:h10
@@ -362,16 +387,9 @@ else
     set t_Co=256
     colorscheme solarized
 endif
+" }}}
 
-" Specify the behavior when switching between buffers 
-try
-  set switchbuf=usetab
-  set stal=2
-catch
-endtry
-
-" Pulse ------------------------------------------------------------------- {{{
-
+" Pulse {{{
 function! PulseCursorLine()
     let current_window = winnr()
 
