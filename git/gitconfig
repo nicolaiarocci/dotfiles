@@ -22,5 +22,3 @@
 	ui = true
 [grep]
 	lineNumber = true
-[pull]
-	rebase = =
