@@ -26,6 +26,7 @@ Bundle 'bling/vim-bufferline'
 "Bundle 'sontek/minibufexpl.vim'
 Bundle 'alfredodeza/pytest.vim'
 Bundle 'vim-scripts/greplace.vim'
+Bundle 'rizzatti/dash.vim'
 " }}}
 
 " Themes {{{
@@ -352,6 +353,10 @@ let g:ctrlp_show_hidden = 0
 let g:ctrlp_open_new_file = 'r'         " open new file in current windows
 " }}}
 
+" Dash {{{
+:nmap <silent> <leader>d <Plug>DashSearch
+" }}}
+"
 " GUI  {{{
 if has('win32') || has('win64')
   " Windows
