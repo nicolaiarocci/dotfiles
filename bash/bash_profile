@@ -10,9 +10,10 @@ export CLICOLOR=1
 export GREP_OPTIONS='--color=auto'
 
 source ~/.dotfiles/git/git-prompt.sh
-#if [ -f `brew --prefix`/etc/bash_completion ]; then
-#. `brew --prefix`/etc/bash_completion
-#fi
+
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+. `brew --prefix`/etc/bash_completion
+fi
 
 # vi mode
 set -o vi
