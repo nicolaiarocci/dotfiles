@@ -9,9 +9,10 @@ export CLICOLOR=1
 # Tell grep to highlight matches
 export GREP_OPTIONS='--color=auto'
 
-if [ -f `brew --prefix`/etc/bash_completion ]; then
-. `brew --prefix`/etc/bash_completion
-fi
+source ~/.dotfiles/git/git-prompt.sh
+#if [ -f `brew --prefix`/etc/bash_completion ]; then
+#. `brew --prefix`/etc/bash_completion
+#fi
 
 # vi mode
 set -o vi
