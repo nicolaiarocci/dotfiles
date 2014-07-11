@@ -3,6 +3,9 @@ export PATH=/usr/local/bin:$PATH
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
+# don't mess with caching *.pyc files as we're a dev machine
+export PYTHONDONTWRITEBYTECODE=True
+
 # Tell ls to be colourful
 export CLICOLOR=1
 
