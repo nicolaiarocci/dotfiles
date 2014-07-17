@@ -185,6 +185,7 @@ let g:pymode_rope_complete_on_dot = 0
 nmap <silent><Leader>tf <Esc>:Pytest file<CR>
 nmap <silent><Leader>tc <Esc>:Pytest class<CR>
 nmap <silent><Leader>tm <Esc>:Pytest method<CR>
+nmap <silent><Leader>tmd <Esc>:Pytest method --pdb<CR>
 nmap <silent><Leader>tp <Esc>:Pytest project<CR>
 " }}}
 
