@@ -19,6 +19,8 @@
 	co = checkout
 	cob = checkout -b
 	g = grep --break --heading --line-number
+
+    # edit global git config
     ec = config --global -e
 
     # add all changes including untracked files and then create a commit
