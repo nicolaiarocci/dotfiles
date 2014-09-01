@@ -35,6 +35,11 @@
     # 'WIP' message.
     wip = !git add -u && git commit -m 'WIP'
 
+    # add changes in working dir to a WIPE SAVEPOINT commit, then wipe that
+    # commit so: A) working dir is clean and B) I can still go back to
+    # that work I wiped if needs arises (via reflog).
+    wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+
 [color]
 	ui = true
 [grep]
