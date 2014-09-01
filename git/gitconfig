@@ -18,6 +18,7 @@
 	rh2 = reset HEAD^^ --hard
 	co = checkout
 	g = grep --break --heading --line-number
+    ec = config --global -e
 [color]
 	ui = true
 [grep]
