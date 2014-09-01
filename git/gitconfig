@@ -20,6 +20,11 @@
 	cob = checkout -b
 	g = grep --break --heading --line-number
     ec = config --global -e
+
+    # add all changes including untracked files and then create a commit
+    # with message...
+    cm = !git add -A && git commit -m
+
 [color]
 	ui = true
 [grep]
