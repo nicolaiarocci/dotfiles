@@ -27,6 +27,14 @@
     # with message...
     cm = !git add -A && git commit -m
 
+    # add all changes including untracked files and then commit with
+    # 'SAVEPOINT' message.
+    save = !git add -A && git commit -m 'SAVEPOINT'
+
+    # add all tracked changes (do not untracked files) and then commit with
+    # 'WIP' message.
+    wip = !git add -u && git commit -m 'WIP'
+
 [color]
 	ui = true
 [grep]
