@@ -31,6 +31,10 @@
     # 'SAVEPOINT' message.
     save = !git add -A && git commit -m 'SAVEPOINT'
 
+    # this is functionally identical to 'r1' but it makes more sense
+    # semantically, as it is going to be used after a 'save' or 'wip'
+    undo = reset HEAD^ --mixed
+
     # add all tracked changes (do not untracked files) and then commit with
     # 'WIP' message.
     wip = !git add -u && git commit -m 'WIP'
