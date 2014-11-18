@@ -13,6 +13,10 @@ ln -s ~/.dotfiles/git/gitignore_global ~/.gitignore_global
 echo "Setting up iTerm2..."
 ln -s ~/.dotfiles/iterm2/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist
 
+#ipython
+echo "Setting up ipython"
+ln -s ~/.dotfiles/ipython/ipython_config.py ~/.ipython/profile_default/ipython_config.py
+
 #vim
 echo "Setting up vim..."
 ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
