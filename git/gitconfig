@@ -48,3 +48,5 @@
 	ui = true
 [grep]
 	lineNumber = true
+[push]
+	default = simple
