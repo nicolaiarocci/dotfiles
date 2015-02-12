@@ -1,4 +1,4 @@
-export PATH=/usr/local/bin:$PATH
+export PATH=~/bin:/usr/local/bin:$PATH
 # export PATH=/usr/local/share/python:$PATH
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
