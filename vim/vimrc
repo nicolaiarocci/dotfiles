@@ -28,6 +28,7 @@ Bundle 'alfredodeza/pytest.vim'
 Bundle 'vim-scripts/greplace.vim'
 Bundle 'rizzatti/dash.vim'
 Bundle 'idanarye/vim-merginal'
+Bundle 'ryanss/vim-hackernews'
 " }}}
 
 " Themes {{{
