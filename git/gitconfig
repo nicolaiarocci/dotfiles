@@ -44,6 +44,9 @@
     # that work I wiped if needs arises (via reflog).
     wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
 
+    # show a tree with all branches
+    tree = !git log --graph --decorate --all --oneline
+
 [color]
 	ui = true
 [grep]
