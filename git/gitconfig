@@ -19,6 +19,7 @@
 	co = checkout
 	cob = checkout -b
 	g = grep --break --heading --line-number
+	cp = cherry-pick
 
     # edit global git config
     ec = config --global -e
