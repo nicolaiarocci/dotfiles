@@ -10,19 +10,32 @@
 	amend = commit --amend
 	fixup = commit --amend --no-edit
 	st = status -sb
-    r = reset HEAD
-	r1 = reset HEAD^
-	r2 = reset HEAD^^
-    rh = reset HEAD --hard
-	rh1 = reset HEAD^ --hard
-	rh2 = reset HEAD^^ --hard
 	co = checkout
 	cob = checkout -b
-	g = grep --break --heading --line-number
 	cp = cherry-pick
 
+	# show last commit
+	last = log -1 HEAD
+
+	# unstage staged files (or pass a filename)
+	unstage = reset HEAD --
+
+	# undo last commit(s) and keep changes, with files unstaged
+	r1 = reset HEAD^
+	r2 = reset HEAD^^
+
+    # discard all changes since last commit (use with caution)
+    rh = reset HEAD --hard
+
+	# undo last commit(s) and discard changes (use with caution)
+	rh1 = reset HEAD^ --hard
+	rh2 = reset HEAD^^ --hard
+
+	# fast grep on current folder and subfolders
+	g = grep --break --heading --line-number
+
     # edit global git config
-    ec = config --global -e
+	ec = config --global -e
 
     # add all changes including untracked files and then create a commit
     # with message...
