@@ -61,6 +61,10 @@
     # show a tree with all branches
     tree = !git log --graph --decorate --all --oneline
 
+	# delete branches which have been already merged to master
+	delete-merged-branches = "!git branch --merged master | grep -v '\\* master' | xargs -n 1 git branch -d"
+
+
 [color]
 	ui = true
 [grep]
