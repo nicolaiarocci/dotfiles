@@ -17,6 +17,10 @@ ln -s ~/.dotfiles/iterm2/com.googlecode.iterm2.plist ~/Library/Preferences/com.g
 echo "Setting up ipython"
 ln -s ~/.dotfiles/ipython/ipython_config.py ~/.ipython/profile_default/ipython_config.py
 
+#vscode
+echo "Setting up vscode"
+ln -s ~/.dotfiles/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
+
 #vim
 echo "Setting up vim..."
 ln -s ~/.dotfiles/vim/vimrc ~/.vimrc

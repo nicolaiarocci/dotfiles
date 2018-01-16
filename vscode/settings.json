@@ -1,0 +1,47 @@
+// Place your settings in this file to overwrite the default settings
+{
+    "window.zoomLevel": 0,
+    "editor.rulers": [ 79 ],
+    "python.linting.pylintArgs": [ "--disable=C0111,C0304,C0303, C0103" ],
+    "python.pythonPath": "python3",
+    "python.venvPath": "~/.virtualenvs",
+    // So cursor changes when in insert mode
+    "editor.cursorStyle": "line",
+    "vim.insertModeKeyBindings": [ 
+        { "before": [ "j", "j" ], "after": [ "<Esc>" ] },
+    ],
+    "vim.leader": ",",  
+    "vim.otherModesKeyBindingsNonRecursive": [
+            {
+                "before": ["<leader>",  "w"],
+                "after": [],
+                "commands": [
+                    {
+                        "command": "workbench.action.files.save",
+                        "args": []
+                     },
+                ]
+            },
+            {
+                "before": ["<leader>",  "b", "d"],
+                "after": [],
+                "commands": [
+                    {
+                        "command": "workbench.action.closeActiveEditor",
+                        "args": []
+                     },
+                ]
+            }
+    ],
+    "files.exclude": {
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/*.pyc": true,
+        "**/*.egg": true,
+        "**/dist": true,
+        "**/build": true,
+        "**/.*": true,
+    },
+    "vim.useSystemClipboard": true,
+    "workbench.colorTheme": "Solarized Dark",
+}
