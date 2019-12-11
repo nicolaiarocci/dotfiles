@@ -1,11 +1,12 @@
 [core]
 	editor = /usr/bin/vim
 	excludesfile = ~/.gitignore_global
+	autocrlf = input
 [user]
 	name = Nicola Iarocci
 	email = nicola@nicolaiarocci.com
 [credential]
-	helper = osxkeychain
+	helper = store
 [alias]
 	amend = commit --amend
 	fixup = commit --amend --no-edit
