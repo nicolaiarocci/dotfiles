@@ -1,0 +1,43 @@
+let mapleader=","
+
+" in insert mode, jj will drop you back to normal mode.
+inoremap jj <Esc>
+
+" enable surround plugin
+set surround
+
+" H swithes to previous tab; L to next one.
+" (credits: Daniel Enrico Botta)
+nnoremap H gT 
+nnoremap L gt
+
+" always show what mode we're currently editing in.
+set showmode
+
+" enable line numbers.
+set nu 
+" set relative line numbers.
+" jump to Nth line forward/up with <#>j or <#>k.
+set relativenumber
+
+" Show a few lines of context around the cursor. Note that this makes the
+" text scroll if you mouse-click near the start or end of the window.
+set scrolloff=5
+
+" set incremental searching.
+set incsearch
+
+map <leader>d <Action>(Debug)
+map <leader>c <Action>(Stop)
+map <leader>re <Action>(RenameElement)
+map <leader>rr <Action>(ReformatCode)
+map <leader>z <Action>(ToggleDistractionFreeMode)
+
+map <leader>s <Action>(SelectInProjectView)
+map <leader>a <Action>(Annotate)
+map <leader>h <Action>(Vcs.ShowTabbedFileHistory)
+map <leader>e <Action>(GotoNextError)
+map <leader><S-e> <Action>(GotoPreviousError)
+
+map <leader>b <Action>(ToggleLineBreakpoint)
+map <leader>o <Action>(FileStructurePopup)
