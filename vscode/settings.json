@@ -1,6 +1,6 @@
 // Place your settings in this file to overwrite the default settings
 {
-    "window.zoomLevel": 0,
+    "window.zoomLevel": 1,
     "editor.rulers": [ 79 ],
     "python.linting.pylintArgs": [ "--disable=C0111,C0304,C0303, C0103" ],
     "python.pythonPath": "python3",
@@ -44,4 +44,12 @@
     },
     "vim.useSystemClipboard": true,
     "workbench.colorTheme": "Solarized Dark",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "python.defaultInterpreterPath": "python3",
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
 }
